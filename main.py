@@ -8,12 +8,14 @@ import json
 import time
 
 from flask import Flask, request
+import logging
 
 import config
 from handler import *
 
 app = Flask(__name__)
 
+logging.basicConfig(level=logging.INFO)
 
 def get_timestamp():
     timestamp = time.strftime("%Y-%m-%d %X")
@@ -42,5 +44,5 @@ def webhook():
 
 if __name__ == "__main__":
     from waitress import serve
-
-    serve(app, host="0.0.0.0", port=80)
+    # app.run(host='0.0.0.0')
+    serve(app, port=80)
